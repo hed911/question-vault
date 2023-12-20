@@ -12,7 +12,7 @@ Question Vault is an intuitive software platform designed to empower users in cu
 
 ## Tech
 
-Question Vault uses a number of open source projects to work properly:
+Technologies, libraries, gems and other tools used for this development:
 
 - Ruby On Rails: Full stack web framework
 - Resque: Library for creating background jobs
@@ -21,8 +21,8 @@ Question Vault uses a number of open source projects to work properly:
 - Javascript: Programming language and core technology of the World Wide Web
 - Notion SDK: Ruby Notion SDK that helps to connect the API using a wrapper
 - Active Record Import: Library for bulk inserting data using ActiveRecord
-- [Brakeman] - Free vulnerability scanner specifically designed for Ruby on Rails applications
-- [RSpec] - Testing tool for Ruby, created for behavior-driven development
+- Brakeman - Free vulnerability scanner specifically designed for Ruby on Rails applications
+- RSpec - Testing tool for Ruby, created for behavior-driven development
 
 ## Installation
 
