@@ -20,12 +20,12 @@ class IntegrationFormObject
     @integration.errors.full_messages + @integrable.errors.full_messages
   end
   
-	def save!
+  def save!
     @integrable.save!
     @integration.integrable = @integrable
-		@integration.save!
+    @integration.save!
     @integration
-	end
+  end
 
   private 
 
