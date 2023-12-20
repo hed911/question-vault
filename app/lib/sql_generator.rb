@@ -1,8 +1,10 @@
 class SqlGenerator
-
   def self.like(key:, value:)
-    return unless value.present?
+    return { string: nil, value: nil } unless value.present?
 
-    "#{key} LIKE '%#{ActiveRecord::Base.sanitize_sql_like(value)}%'"
+    {
+      string: "#{key} LIKE '%' || ? || '%'",
+      value: ActiveRecord::Base.sanitize_sql_like(value)
+    }
   end
 end

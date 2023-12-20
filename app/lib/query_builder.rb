@@ -6,6 +6,7 @@ class QueryBuilder
     @conditions = {}
     @negated_conditions = {}
     @raw_conditions = []
+    @raw_values = []
     @order_options = {}
     @pagination_options = {}
   end
@@ -24,10 +25,11 @@ class QueryBuilder
     @negated_conditions[key] = value
   end
 
-  def add_raw_condition(string)
+  def add_raw_condition(string:, value:)
     return unless string.present?
 
     @raw_conditions << string
+    @raw_values << value
   end
 
   def set_order(field:, type: :asc)
@@ -54,7 +56,7 @@ class QueryBuilder
     @klass
       .where(@conditions)
       .where.not(@negated_conditions)
-      .where(raw_conditions_joined)
+      .where(raw_conditions_joined, *@raw_values)
       .order(@order_options)
   end
 
@@ -62,7 +64,7 @@ class QueryBuilder
     @klass
       .where(@conditions)
       .where.not(@negated_conditions)
-      .where(raw_conditions_joined)
+      .where(raw_conditions_joined, *@raw_values)
       .order(@order_options)
       .paginate(@pagination_options)
   end

@@ -28,7 +28,7 @@ class QuestionGroupsController < ApplicationController
     qb.set_order(field: :created_at, type: :asc)
     qb.add_negated_condition(key: :status, value: 'deleted')
     fields.each { |k| qb.add_condition_if_value_present(key: k, value: permitted_params[k])}
-    qb.add_raw_condition(SqlGenerator.like(key: :name, value: permitted_params[:name]))
+    qb.add_raw_condition(**SqlGenerator.like(key: :name, value: permitted_params[:name]))
 
     result = qb.fetch_results
     @total_pages = result[:total_pages]
