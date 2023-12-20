@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table id="table-result" class="table table-bordered table-hover table-striped tablesorter">
+    <thead>
+      <tr>
+        <th data-sort="string">Id</th>
+        <th data-sort="string">Question</th>
+        <th data-sort="string">Status</th>
+        <th data-sort="string">Source</th>
+        <th data-sort="string">Difficulty level</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="table-result-body">
+      <% @records.each do |record| -%>
+        <tr class="table-success">
+          <td><%= record.id %></td>
+          <td><%= record.query %></td>
+          <td><%= record.status&.titleize %></td>
+          <td><%= record.source&.titleize %></td>
+          <td><%= record.difficulty_level&.titleize %></td>
+          <td>
+            <%= link_to "", title: "Edit", class: "btn btn-xs btn-success edit-btn", "data-id": record.id do %>
+              <i class="fa fa-pencil-square-o"></i> Edit
+            <% end %>
+            <%= link_to record.destroy_url, class:"btn btn-xs btn-danger", remote: true, method: :delete, title:"Delete", :data => { :confirm => 'Are you sure?' } do %>
+              <i class="fa fa-trash-o"></i> Delete
+            <% end %>
+          </td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <%= render 'common/pagination', { current_page: @current_page, total: @total_pages } %>
+  </div>
+</div>

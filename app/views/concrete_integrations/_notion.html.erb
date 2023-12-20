@@ -1,0 +1,13 @@
+<div class="col-md-12">
+  <div class="form-group">
+    <label class="control-label">Page ID</label>
+    <%= text_field_tag("nested[page_id]", model&.page_id, class:'form-control', required: true) %>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="form-group">
+    <label class="control-label">Secret key</label>
+    <%= text_field_tag("nested[secret_key]", model&.secret_key, class:'form-control', required: true) %>
+  </div>
+</div>

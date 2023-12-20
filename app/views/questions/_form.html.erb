@@ -1,0 +1,41 @@
+<%= form_tag(url, method: method, multipart: true, "data-ajax": "false", remote: true) do %>
+  <div class="row">
+    <div class="container card-group">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Question</label>
+                <%= text_field_tag(:query, model&.query, class:'form-control', required: true) %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Answer</label>
+                <%= text_area_tag(:answer, model&.answer, size: "56x4", class:'form-control', placeholder:'') %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Difficulty level</label>
+                <%= select_tag :difficulty_level, options_for_select(@difficulty_levels.collect { |level|
+        				[level[:text], level[:id]] }, model&.difficulty_level), { id: 'difficulty_level', class:'form-control', include_blank: 'Not set'} %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form role="form">
+      <div class="col-md-12">
+        <div class="text-center">
+          <%= submit_tag footer_text, :class => "btn btn-success btn-lg", :disable_with => "Porfavor espere..." %>
+        </div>
+      </div>
+    </form>
+  </div>
+
+<% end %>

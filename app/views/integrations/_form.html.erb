@@ -1,0 +1,40 @@
+<%= form_tag(url, method: method, multipart: true, "data-ajax": "false", remote: true) do %>
+  <div class="row">
+    <div class="container card-group">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Description</label>
+                <%= text_field_tag(:description, model&.description, class:'form-control', required: true) %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Type</label>
+                <%= select_tag :type, options_for_select(external_integrations.collect { |integration|
+        				[integration[:text], integration[:id]] }, model&.type&.downcase), { id: 'type', class:'form-control', include_blank: 'Choose an option', required: true} %>
+              </div>
+            </div>
+            <div id="variable-fields">
+              <% if model.present? %>
+                <%= render "concrete_integrations/#{model&.type&.downcase}", model: model&.integrable %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form role="form">
+      <div class="col-md-12">
+        <div class="text-center">
+          <%= submit_tag footer_text, :class => "btn btn-success btn-lg", :disable_with => "Porfavor espere..." %>
+        </div>
+      </div>
+    </form>
+  </div>
+
+<% end %>

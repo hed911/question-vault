@@ -1,0 +1,5 @@
+<% if @records.any? %>
+  <%= render 'table', { records: @records } %>
+<% else %>
+  <%= render 'common/empty_state' %>
+<% end %>

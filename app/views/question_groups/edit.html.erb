@@ -1,0 +1,18 @@
+
+<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-l">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class='col-12 modal-title text-center'>
+          <%= @view_object.hash[:title] %>
+          <button type='button' class='close' data-bs-dismiss='modal' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+          </button>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', { **@view_object.hash } %>
+      </div>
+    </div>
+  </div>
+</div>

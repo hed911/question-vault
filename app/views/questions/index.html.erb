@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <h1>Questions</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <%= link_to "Question groups", question_groups_path %>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <%= @parent_record.name %>
+          </li>
+        </ol>
+      </nav>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title"></h3>
+        </div>
+        <div id="table-container" class="panel-body"></div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="text-center">
+        <button id="new-group-button" type="button" class="btn btn-primary">New question</button>
+        <hr>
+      </div>
+
+      <div class="row">
+        <%= label_tag(:query_search, "Search by question:", class: "form-radio-label") %>
+        <%= text_field_tag :query_search, nil, class: "form-control bind-search" %>
+      </div>
+
+      <%= radio_button_list(
+        list: @statuses, 
+        title: "Status",
+        field_name: 'status_search',
+        checked_id: 'any')
+      %>
+
+      <%= radio_button_list(
+        list: @sources, 
+        title: "Source",
+        field_name: 'source_search',
+        checked_id: 'any')
+      %>
+
+      <%= radio_button_list(
+        list: @difficulty_levels, 
+        title: "Difficulty levels",
+        field_name: 'difficulty_level_search',
+        checked_id: 'any')
+      %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "custom/questions/index" %>
