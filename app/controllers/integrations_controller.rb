@@ -1,5 +1,6 @@
 class IntegrationsController < ApplicationController
   include ControllerUtils
+  include DataUtils
 
   before_action :find_record, only: %i[edit update show destroy]
   before_action :init_errors, only: %i[update destroy]
@@ -7,16 +8,8 @@ class IntegrationsController < ApplicationController
   helper FormComponents
  
   def index
-    @statuses = [
-      { id: 'any', text: 'Any' },
-      { id: 'active', text: 'Active' },
-      { id: 'archived', text: 'Archived' }
-    ]
-
-    @sources = [
-      { id: 'any', text: 'Any' },
-      *external_integrations
-    ]
+    set_statuses
+    set_sources(include_local: false)
   end
 
   def filter

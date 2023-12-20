@@ -1,5 +1,6 @@
 class QuestionGroupsController < ApplicationController
   include ControllerUtils
+  include DataUtils
 
   before_action :find_record, only: %i[edit update show destroy]
   before_action :init_errors, only: %i[update destroy]
@@ -7,17 +8,8 @@ class QuestionGroupsController < ApplicationController
   helper FormComponents
  
   def index
-    @statuses = [
-      { id: 'any', text: 'Any' },
-      { id: 'active', text: 'Active' },
-      { id: 'archived', text: 'Archived' }
-    ]
-
-    @sources = [
-      { id: 'any', text: 'Any' },
-      { id: 'local', text: 'Local' },
-      *external_integrations
-    ]
+    set_statuses
+    set_sources
   end
 
   def filter

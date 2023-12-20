@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   include ControllerUtils
+  include DataUtils
   include Rails.application.routes.url_helpers
 
   before_action :find_parent_record, only: %i[index filter edit update destroy]
@@ -8,19 +9,9 @@ class QuestionsController < ApplicationController
 
   helper FormComponents
  
-  def index
-    @statuses = [
-      { id: 'any', text: 'Any' },
-      { id: 'active', text: 'Active' },
-      { id: 'archived', text: 'Archived' }
-    ]
-
-    @sources = [
-      { id: 'any', text: 'Any' },
-      { id: 'local', text: 'Local' },
-      *external_integrations
-    ]
-
+  def index    
+    set_statuses
+    set_sources
     set_difficulty_levels
 
     gon.push({ parent_id: @parent_record.id })
@@ -71,15 +62,6 @@ class QuestionsController < ApplicationController
   end
 
   private
-
-  def set_difficulty_levels
-    @difficulty_levels = [
-      { id: 'any', text: 'Any' },
-      { id: 'easy', text: 'Easy' },
-      { id: 'medium', text: 'Medium' },
-      { id: 'hard', text: 'Hard' }
-    ]
-  end
 
   def parent_klass
     QuestionGroup
