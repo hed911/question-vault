@@ -7,13 +7,14 @@ class ApplicationController < ActionController::Base
 
   def custom_error_handling(exception)
     @errors << exception.message
+    @error_string = @errors.join('\n')
     Rails.logger.error "[INVALID_RECORD] Exception #{exception.class}: #{exception.message}"
     render partial: 'common/error_handler'
   end
 
   def decide_layout
     return if current_user
-    
+
     render layout: 'without_login'
   end
 end
