@@ -18,6 +18,16 @@ Rails.application.routes.draw do
       get :form
     end
   end
+
+  namespace :api, constraints: { format: 'json' } do
+    namespace :v1 do
+      resources :question_groups do 
+        member do 
+          get :questions
+        end
+      end
+    end
+  end
   
   authenticate :user do
     mount Sidekiq::Web => '/sidekiq'

@@ -1,21 +1,19 @@
-- continue with add test cases
-X add breakman
-X add a proxy / decorator
-X add entity model diagram
-X add documentation
-X add system design diagram
-X integrate Sidekiq
-
 HIGHLIGHT
 - Explain the context of system
 - Explain parts of the system
 - Explain the entity model
+- Explain models
+- Explain model concerns
+- Explain controllers
+- Explain controller concerns
+- Explain views
+- Explain helpers
+- Explain javascript files
 - Explain security in my app
 - Explain used gems
-- Explain concerns in models
-- Explain concerns in controllers
-- Explain classical design patterns
-- Explain RoR design patterns
+- Explain template method design pattern
+- Explain the decorator design pattern
+- Explain the factory design pattern
 - Explain tests strategies
 - Explain test coverage
 - Explain improvements
