@@ -1,6 +1,8 @@
 module Api
   module V1
     class QuestionGroupsController < ApplicationController
+      before_action :authenticate_user!, only: []
+
       def index
         records = QuestionGroup.all.order(created_at: :asc)
         render json: records.to_json(only: %i[id name status description])

@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
     render partial: 'common/error_handler'
   end
 
+  def in_api_namespace?
+    controller_path.split('/').first == "api"
+  end
+
   def decide_layout
-    return if current_user
+    return if current_user || in_api_namespace?
 
     render layout: 'without_login'
   end
